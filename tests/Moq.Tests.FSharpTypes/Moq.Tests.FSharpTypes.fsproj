@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="$(BuildDirectory)AssemblyInfo.props" />
-	<Import Project="$(BuildDirectory)SignAssembly.props" />
 
 	<PropertyGroup>
 		<TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>

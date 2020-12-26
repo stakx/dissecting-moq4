@@ -9,7 +9,4 @@
 
 	<Target Name="Configure" DependsOnTargets="Restore" />
 	
-	<!-- Target is replaced by the one in GitInfo after restore succeeds. -->
-	<Target Name="GitVersion" />
-	
 </Project>
