@@ -1250,35 +1250,6 @@ namespace Moq.Tests
 			}
 		}
 
-		[Fact]
-		public void New_mock_has_no_preconfigured_default_return_values()
-		{
-			var mock = new Mock<object>();
-
-			Assert.Empty(mock.ConfiguredDefaultValues);
-		}
-
-		[Fact]
-		public void SetReturnsDefault_records_a_configured_default_return_value()
-		{
-			var mock = new Mock<object>();
-
-			mock.SetReturnsDefault<int>(123);
-
-			Assert.NotEmpty(mock.ConfiguredDefaultValues);
-		}
-
-		[Fact]
-		public void Reset_clears_configured_default_return_values()
-		{
-			var mock = new Mock<object>();
-			mock.SetReturnsDefault<int>(123);
-
-			mock.Reset();
-
-			Assert.Empty(mock.ConfiguredDefaultValues);
-		}
-
 #if FEATURE_DYNAMICPROXY_SERIALIZABLE_PROXIES
 		[Serializable]
 		public class BadSerializable : ISerializable

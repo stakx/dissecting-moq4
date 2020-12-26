@@ -100,20 +100,5 @@ namespace Moq.Tests
 			int[] GetValues();
 			IFoo Inner { get; }
 		}
-
-		private sealed class ConstantDefaultValueProvider : DefaultValueProvider
-		{
-			private object value;
-
-			public ConstantDefaultValueProvider(object value)
-			{
-				this.value = value;
-			}
-
-			protected internal override object GetDefaultValue(Type type, Mock mock)
-			{
-				return this.value;
-			}
-		}
 	}
 }

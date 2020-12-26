@@ -237,7 +237,7 @@ namespace Moq.Tests
 		{
 			var mock = new Mock<IBar>();
 
-			mock.SetReturnsDefault(1);
+			mock.DefaultValueProvider = new ConstantDefaultValueProvider(1);
 			mock.SetupAllProperties();
 			Assert.Equal(1, mock.Object.Value);
 

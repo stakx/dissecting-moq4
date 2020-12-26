@@ -777,32 +777,11 @@ namespace Moq
 
 		#region Default Values
 
-		internal abstract Dictionary<Type, object> ConfiguredDefaultValues { get; }
-
-		/// <summary>
-		/// Defines the default return value for all mocked methods or properties with return type <typeparamref name= "TReturn" />.
-		/// </summary>
-		/// <typeparam name="TReturn">The return type for which to define a default value.</typeparam>
-		/// <param name="value">The default return value.</param>
-		/// <remarks>
-		/// Default return value is respected only when there is no matching setup for a method call.
-		/// </remarks>
-		public void SetReturnsDefault<TReturn>(TReturn value)
-		{
-			this.ConfiguredDefaultValues[typeof(TReturn)] = value;
-		}
-
 		internal object GetDefaultValue(MethodInfo method, out Mock candidateInnerMock, DefaultValueProvider useAlternateProvider = null)
 		{
 			Debug.Assert(method != null);
 			Debug.Assert(method.ReturnType != null);
 			Debug.Assert(method.ReturnType != typeof(void));
-
-			if (this.ConfiguredDefaultValues.TryGetValue(method.ReturnType, out object configuredDefaultValue))
-			{
-				candidateInnerMock = null;
-				return configuredDefaultValue;
-			}
 
 			var result = (useAlternateProvider ?? this.DefaultValueProvider).GetDefaultReturnValue(method, this);
 			var unwrappedResult = Unwrap.ResultIfCompletedTask(result);

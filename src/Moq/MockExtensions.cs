@@ -17,7 +17,6 @@ namespace Moq
 		/// <param name="mock">The mock whose state should be reset.</param>
 		public static void Reset(this Mock mock)
 		{
-			mock.ConfiguredDefaultValues.Clear();
 			mock.MutableSetups.Clear();
 			mock.EventHandlers.Clear();
 			mock.Invocations.Clear();

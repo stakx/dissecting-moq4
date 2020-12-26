@@ -262,8 +262,6 @@ namespace Moq
 
 		internal override object[] ConstructorArguments => this.constructorArguments;
 
-		internal override Dictionary<Type, object> ConfiguredDefaultValues => this.configuredDefaultValues;
-
 		/// <summary>
 		/// Gets or sets the <see cref="DefaultValueProvider"/> instance that will be used
 		/// e. g. to produce default return values for unexpected invocations.

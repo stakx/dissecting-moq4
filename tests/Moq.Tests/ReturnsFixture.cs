@@ -223,33 +223,6 @@ namespace Moq.Tests
 		}
 
 		[Fact]
-		public void ReturnsDefaultValueType()
-		{
-			var mock = new Mock<IFoo>();
-			mock.SetReturnsDefault(true);
-
-			Assert.True(mock.Object.ReturnBool());
-		}
-
-		[Fact]
-		public void ReturnsDefaultReferenceValue()
-		{
-			var mock = new Mock<IFoo>();
-			mock.SetReturnsDefault<IList<int>>(new List<int>());
-
-			Assert.NotNull(mock.Object.ReturnIntList());
-		}
-
-		[Fact]
-		public void ReturnsDefaultValueOnProperty()
-		{
-			var mock = new Mock<IFoo>();
-			mock.SetReturnsDefault(int.MinValue);
-
-			Assert.Equal(int.MinValue, mock.Object.Value);
-		}
-
-		[Fact]
 		public void ReturnsValueFromBaseMethod()
 		{
 			var mock = new Mock<Foo>();
@@ -366,7 +339,7 @@ namespace Moq.Tests
 			const int expected = 42;
 
 			var mock = new Mock<IFoo>(MockBehavior.Loose);
-			mock.SetReturnsDefault<int>(expected);
+			mock.DefaultValueProvider = new ConstantDefaultValueProvider(42);
 
 			var actualWithoutSetup = mock.Object.Value;
 			Assert.Equal(expected, actualWithoutSetup);
