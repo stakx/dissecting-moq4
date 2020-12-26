@@ -6,3 +6,4 @@ obj
 *.cache
 .vs
 .*
+!.gitkeep
