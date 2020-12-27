@@ -74,11 +74,7 @@ namespace Moq
 
 		internal abstract bool Matches(object argument, Type parameterType);
 
-		internal abstract void SetupEvaluatedSuccessfully(object argument, Type parameterType);
-
 		bool IMatcher.Matches(object argument, Type parameterType) => this.Matches(argument, parameterType);
-
-		void IMatcher.SetupEvaluatedSuccessfully(object value, Type parameterType) => this.SetupEvaluatedSuccessfully(value, parameterType);
 
 		internal Expression RenderExpression { get; set; }
 
@@ -165,26 +161,16 @@ namespace Moq
 	public class Match<T> : Match, IEquatable<Match<T>>
 	{
 		internal Predicate<T> Condition { get; set; }
-		internal Action<T> Success { get; set; }
 
-		internal Match(Predicate<T> condition, Expression<Func<T>> renderExpression, Action<T> success = null)
+		internal Match(Predicate<T> condition, Expression<Func<T>> renderExpression)
 		{
 			this.Condition = condition;
 			this.RenderExpression = renderExpression.Body.Apply(EvaluateCaptures.Rewriter);
-			this.Success = success;
 		}
 
 		internal override bool Matches(object argument, Type parameterType)
 		{
 			return CanCast(argument) && this.Condition((T)argument);
-		}
-
-		internal override void SetupEvaluatedSuccessfully(object argument, Type parameterType)
-		{
-			Debug.Assert(this.Matches(argument, parameterType));
-			Debug.Assert(CanCast(argument));
-
-			this.Success?.Invoke((T)argument);
 		}
 
 		private static bool CanCast(object value)
@@ -251,11 +237,6 @@ namespace Moq
 		{
 			var canCast = (Predicate<object>)Delegate.CreateDelegate(typeof(Predicate<object>), canCastMethod.MakeGenericMethod(parameterType));
 			return canCast(argument) && condition(argument, parameterType);
-		}
-
-		internal override void SetupEvaluatedSuccessfully(object argument, Type parameterType)
-		{
-			Debug.Assert(this.Matches(argument, parameterType));
 		}
 
 		private static bool CanCast<T>(object value)

@@ -61,9 +61,6 @@ namespace Moq
 			invocation.MarkAsMatchedBy(this);
 			this.SetOutParameters(invocation);
 
-			// update matchers (important for `Capture`):
-			this.expectation.SetupEvaluatedSuccessfully(invocation);
-
 			this.ExecuteCore(invocation);
 		}
 

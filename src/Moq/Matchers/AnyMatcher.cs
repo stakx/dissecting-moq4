@@ -15,10 +15,5 @@ namespace Moq.Matchers
 		}
 
 		public bool Matches(object argument, Type parameterType) => true;
-
-		public void SetupEvaluatedSuccessfully(object argument, Type parameterType)
-		{
-			Debug.Assert(this.Matches(argument, parameterType));
-		}
 	}
 }

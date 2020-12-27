@@ -345,7 +345,6 @@ namespace Moq
 			{
 				foreach (var (invocation, part) in invocationsToBeMarkedAsVerified)
 				{
-					part.SetupEvaluatedSuccessfully(invocation);
 					invocation.MarkAsVerified();
 				}
 			}

@@ -27,18 +27,6 @@ namespace Moq.Tests.Matchers
 			Assert.Equal(shouldMatch, matcher.Matches(new object[] { first, second }, typeof(object[])));
 		}
 
-		[Fact]
-		public void SetupEvaluatedSuccessfully_succeeds_for_matching_values()
-		{
-			var methodCallExpr = (MethodCallExpression)ToExpression<IX>(x => x.Method(It.IsAny<int>(), It.IsAny<string>())).Body;
-			var expr = methodCallExpr.Arguments.Single();
-			var parameter = typeof(IX).GetMethod("Method").GetParameters().Single();
-
-			var (matcher, _) = MatcherFactory.CreateMatcher(expr, parameter);
-
-			matcher.SetupEvaluatedSuccessfully(new object[] { 42, "" }, typeof(object[]));
-		}
-
 		private LambdaExpression ToExpression<T>(Expression<Action<T>> expr)
 		{
 			return expr;

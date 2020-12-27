@@ -21,10 +21,5 @@ namespace Moq.Matchers
 			return argument is Expression valueExpression
 				&& ExpressionComparer.Default.Equals(this.expression, valueExpression);
 		}
-
-		public void SetupEvaluatedSuccessfully(object argument, Type parameterType)
-		{
-			Debug.Assert(this.Matches(argument, parameterType));
-		}
 	}
 }

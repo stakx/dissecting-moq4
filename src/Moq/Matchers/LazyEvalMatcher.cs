@@ -26,10 +26,5 @@ namespace Moq.Matchers
 
 			return false;
 		}
-
-		public void SetupEvaluatedSuccessfully(object argument, Type parameterType)
-		{
-			Debug.Assert(this.Matches(argument, parameterType));
-		}
 	}
 }

@@ -22,10 +22,5 @@ namespace Moq.Matchers
 			return this.referenceIsValueType ? object.Equals(this.reference, argument)
 			                                 : object.ReferenceEquals(this.reference, argument);
 		}
-
-		public void SetupEvaluatedSuccessfully(object value, Type parameterType)
-		{
-			Debug.Assert(this.Matches(value, parameterType));
-		}
 	}
 }

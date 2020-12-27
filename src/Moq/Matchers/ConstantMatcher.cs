@@ -36,11 +36,6 @@ namespace Moq.Matchers
 			return false;
 		}
 
-		public void SetupEvaluatedSuccessfully(object argument, Type parameterType)
-		{
-			Debug.Assert(this.Matches(argument, parameterType));
-		}
-
 		private bool MatchesEnumerable(IEnumerable enumerable)
 		{
 			var constValues = (IEnumerable)constantValue;

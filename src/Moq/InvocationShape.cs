@@ -125,16 +125,6 @@ namespace Moq
 			return true;
 		}
 
-		public void SetupEvaluatedSuccessfully(Invocation invocation)
-		{
-			var arguments = invocation.Arguments;
-			var parameterTypes = invocation.Method.GetParameterTypes();
-			for (int i = 0, n = this.argumentMatchers.Length; i < n; ++i)
-			{
-				this.argumentMatchers[i].SetupEvaluatedSuccessfully(arguments[i], parameterTypes[i]);
-			}
-		}
-
 		private bool IsOverride(Invocation invocation)
 		{
 			Debug.Assert(invocation.Method != this.Method);
