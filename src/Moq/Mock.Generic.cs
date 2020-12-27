@@ -88,7 +88,6 @@ namespace Moq
 
 		private T instance;
 		private List<Type> additionalInterfaces;
-		private Dictionary<Type, object> configuredDefaultValues;
 		private object[] constructorArguments;
 		private DefaultValueProvider defaultValueProvider;
 		private EventHandlerCollection eventHandlers;
@@ -187,7 +186,6 @@ namespace Moq
 
 			this.additionalInterfaces = new List<Type>();
 			this.behavior = behavior;
-			this.configuredDefaultValues = new Dictionary<Type, object>();
 			this.constructorArguments = args;
 			this.defaultValueProvider = DefaultValueProvider.Empty;
 			this.eventHandlers = new EventHandlerCollection();
