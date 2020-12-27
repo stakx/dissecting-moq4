@@ -60,8 +60,8 @@ try to write a little about that in a later post.
 
 # Removal
 
-Removing this method is quite straightforward (see the single commit
-[`df8df3a`](https://github.com/stakx/dissecting-moq4/commit/df8df3af7b06130d9ba8c3aa1e080653218be7b0)).
+Removing this method is quite straightforward (see the commits
+[`df8df3a`](https://github.com/stakx/dissecting-moq4/commit/df8df3af7b06130d9ba8c3aa1e080653218be7b0) and [`000d488`](https://github.com/stakx/dissecting-moq4/commit/000d488fb5e4d41e13593e7ecb7eb6d6dd142584)).
 As can be seen in the test project, `SetReturnsDefault` can indeed be
 replaced with a custom default value provider (as claimed above).
 
