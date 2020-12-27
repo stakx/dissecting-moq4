@@ -22,12 +22,12 @@ namespace Moq
 		private Behavior raiseEvent;
 		private Behavior returnOrThrow;
 		private Behavior afterReturnCallback;
-		private Condition condition;
+		private Func<bool> condition;
 		private string failMessage;
 
 		private string declarationSite;
 
-		public MethodCall(Expression originalExpression, Mock mock, Condition condition, InvocationShape expectation)
+		public MethodCall(Expression originalExpression, Mock mock, Func<bool> condition, InvocationShape expectation)
 			: base(originalExpression, mock, expectation)
 		{
 			this.condition = condition;
@@ -43,7 +43,7 @@ namespace Moq
 			get => this.failMessage;
 		}
 
-		public override Condition Condition => this.condition;
+		public override Func<bool> Condition => this.condition;
 
 		private static string GetUserCodeCallSite()
 		{

@@ -515,7 +515,7 @@ namespace Moq
 
 		#region Setup
 
-		internal static MethodCall Setup(Mock mock, LambdaExpression expression, Condition condition)
+		internal static MethodCall Setup(Mock mock, LambdaExpression expression, Func<bool> condition)
 		{
 			Guard.NotNull(expression, nameof(expression));
 
@@ -527,7 +527,7 @@ namespace Moq
 			});
 		}
 
-		internal static MethodCall SetupGet(Mock mock, LambdaExpression expression, Condition condition)
+		internal static MethodCall SetupGet(Mock mock, LambdaExpression expression, Func<bool> condition)
 		{
 			Guard.NotNull(expression, nameof(expression));
 
@@ -540,7 +540,7 @@ namespace Moq
 			return Mock.Setup(mock, expression, condition);
 		}
 
-		internal static MethodCall SetupSet(Mock mock, LambdaExpression expression, Condition condition)
+		internal static MethodCall SetupSet(Mock mock, LambdaExpression expression, Func<bool> condition)
 		{
 			Guard.NotNull(expression, nameof(expression));
 			Guard.IsAssignmentToPropertyOrIndexer(expression, nameof(expression));
@@ -580,7 +580,7 @@ namespace Moq
 			}, allowNonOverridableLastProperty: true);
 		}
 
-		internal static MethodCall SetupAdd(Mock mock, LambdaExpression expression, Condition condition)
+		internal static MethodCall SetupAdd(Mock mock, LambdaExpression expression, Func<bool> condition)
 		{
 			Guard.NotNull(expression, nameof(expression));
 			Guard.IsEventAdd(expression, nameof(expression));
@@ -588,7 +588,7 @@ namespace Moq
 			return Mock.Setup(mock, expression, condition);
 		}
 
-		internal static MethodCall SetupRemove(Mock mock, LambdaExpression expression, Condition condition)
+		internal static MethodCall SetupRemove(Mock mock, LambdaExpression expression, Func<bool> condition)
 		{
 			Guard.NotNull(expression, nameof(expression));
 			Guard.IsEventRemove(expression, nameof(expression));

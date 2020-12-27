@@ -10,9 +10,9 @@ namespace Moq.Language.Flow
 		where T : class
 	{
 		private Mock<T> mock;
-		private Condition condition;
+		private Func<bool> condition;
 
-		public WhenPhrase(Mock<T> mock, Condition condition)
+		public WhenPhrase(Mock<T> mock, Func<bool> condition)
 		{
 			this.mock = mock;
 			this.condition = condition;

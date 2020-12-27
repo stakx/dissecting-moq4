@@ -29,7 +29,7 @@ namespace Moq
 			this.mock = mock;
 		}
 
-		public virtual Condition Condition => null;
+		public virtual Func<bool> Condition => null;
 
 		public InvocationShape Expectation => this.expectation;
 
@@ -61,8 +61,7 @@ namespace Moq
 			invocation.MarkAsMatchedBy(this);
 			this.SetOutParameters(invocation);
 
-			// update condition (important for `MockSequence`) and matchers (important for `Capture`):
-			this.Condition?.SetupEvaluatedSuccessfully();
+			// update matchers (important for `Capture`):
 			this.expectation.SetupEvaluatedSuccessfully(invocation);
 
 			this.ExecuteCore(invocation);
@@ -99,7 +98,7 @@ namespace Moq
 
 		public bool Matches(Invocation invocation)
 		{
-			return this.expectation.IsMatch(invocation) && (this.Condition == null || this.Condition.IsTrue);
+			return this.expectation.IsMatch(invocation) && (this.Condition == null || this.Condition());
 		}
 
 		public virtual void SetOutParameters(Invocation invocation)

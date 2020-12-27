@@ -712,7 +712,7 @@ namespace Moq
 		/// </param>
 		public ISetupConditionResult<T> When(Func<bool> condition)
 		{
-			return new WhenPhrase<T>(this, new Condition(condition));
+			return new WhenPhrase<T>(this, condition);
 		}
 
 #endregion
