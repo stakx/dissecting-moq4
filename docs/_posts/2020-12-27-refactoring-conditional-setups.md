@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Refactoring conditional setups"
+date: 2020-12-27 14:59:44
 ---
 
 I noticed in [the previous post]({% post_url 2020-12-26-mock-sequence %}) that neither `MockSequence` nor an earlier

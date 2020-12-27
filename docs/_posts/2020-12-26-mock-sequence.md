@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "MockSequence and mock.InSequence"
+date: 2020-12-26 20:47:56
 ---
 
 `MockSequence` is the little niche feature that led me to working on

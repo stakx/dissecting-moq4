@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "mock.SetReturnsDefault"
+date: 2020-12-26 18:22:57
 ---
 
 Let's start with something simple: the [`mock.SetReturnsDefault` method](https://github.com/stakx/dissecting-moq4/blob/341ec34c623fb0aba6572aa64e37104f4da2662d/src/Moq/Mock.cs#L790).
