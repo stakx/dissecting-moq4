@@ -9,7 +9,7 @@ namespace Moq.Language.Flow
 	/// Implements the fluent API.
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public interface IReturnsResult<TMock> : ICallback, IOccurrence, IRaise<TMock>, IVerifies, IFluentInterface
+	public interface IReturnsResult<TMock> : ICallback, IRaise<TMock>, IVerifies, IFluentInterface
 	{
 	}
 }

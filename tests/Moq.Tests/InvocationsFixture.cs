@@ -277,20 +277,6 @@ namespace Moq.Tests
 		}
 
 		[Fact]
-		[Obsolete()]
-		public void Invocations_Clear_resets_count_kept_by_setup_AtMost()
-		{
-			var mock = new Mock<IComparable>();
-			mock.Setup(m => m.CompareTo(default)).Returns(0).AtMostOnce();
-			_ = mock.Object.CompareTo(default);
-
-			mock.Invocations.Clear();
-			_ = mock.Object.CompareTo(default);  // this second call should now count as the first
-			var ex = Assert.Throws<MockException>(() => mock.Object.CompareTo(default));
-			Assert.Equal(MockExceptionReasons.MoreThanOneCall, ex.Reasons);
-		}
-
-		[Fact]
 		public void New_Mock_should_keep_record_of_invocations_caused_by_mocked_type_ctor()
 		{
 			var mock = new Mock<FlagInitiallySetToTrue>();

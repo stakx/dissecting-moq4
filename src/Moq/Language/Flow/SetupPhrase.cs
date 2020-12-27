@@ -19,14 +19,6 @@ namespace Moq.Language.Flow
 
 		public MethodCall Setup => this.setup;
 
-		public IVerifies AtMost(int callCount)
-		{
-			this.setup.AtMost(callCount);
-			return this;
-		}
-
-		public IVerifies AtMostOnce() => this.AtMost(1);
-
 		public ICallbackResult Callback(InvocationAction action)
 		{
 			this.setup.SetCallbackBehavior(action.Action);

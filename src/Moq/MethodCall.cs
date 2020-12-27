@@ -17,7 +17,6 @@ namespace Moq
 {
 	internal sealed partial class MethodCall : SetupWithOutParameterSupport
 	{
-		private LimitInvocationCount limitInvocationCount;
 		private Behavior callback;
 		private Behavior raiseEvent;
 		private Behavior returnOrThrow;
@@ -84,8 +83,6 @@ namespace Moq
 
 		protected override void ExecuteCore(Invocation invocation)
 		{
-			this.limitInvocationCount?.Execute(invocation);
-
 			this.callback?.Execute(invocation);
 
 			this.raiseEvent?.Execute(invocation);
@@ -331,16 +328,6 @@ namespace Moq
 		public void SetThrowExceptionBehavior(Exception exception)
 		{
 			this.returnOrThrow = new ThrowException(exception);
-		}
-
-		protected override void ResetCore()
-		{
-			this.limitInvocationCount?.Reset();
-		}
-
-		public void AtMost(int count)
-		{
-			this.limitInvocationCount = new LimitInvocationCount(this, count);
 		}
 
 		public override string ToString()
