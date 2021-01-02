@@ -10,7 +10,11 @@ using Moq.Language;
 
 namespace Moq
 {
-	partial class SequenceExtensions
+	/// <summary>
+	/// Helper for sequencing return values in the same method.
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public static partial class SequenceExtensions
 	{
 		/// <summary>
 		/// Return a sequence of values, once per call.
