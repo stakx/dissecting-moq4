@@ -13,13 +13,13 @@ method call without having to manually wrap the desired result in a
 task:
 
 ```diff
--mock.Setup(m => m.CountGoldPiecesAsync()).Returns(Task.FromResult(11873));
-+mock.Setup(m => m.CountGoldPiecesAsync()).ReturnsAsync(11873);
+-mock.Setup(m => m.CountGoldPiecesAsync()).Returns     (Task.FromResult(11873));
++mock.Setup(m => m.CountGoldPiecesAsync()).ReturnsAsync(                11873 );
 ```
 
 ```diff
--mock.Setup(m => m.GoPiratingAsync()).Throws(Task.FromException(new PirateException("arr!")));
-+mock.Setup(m => m.GoPiratingAsync()).ThrowsAsync(new PirateException("arr!"));
+-mock.Setup(m => m.GoPiratingAsync()).Throws     (Task.FromException(new PirateException("arr!")));
++mock.Setup(m => m.GoPiratingAsync()).ThrowsAsync(                   new PirateException("arr!") );
 ```
 
 # You could let the compiler do most the work...
@@ -28,12 +28,12 @@ Given C# `async`/`await`, the same work could be done by the compiler:
 
 ```diff
 -mock.Setup(m => m.CountGoldPiecesAsync()).Returns(Task.FromResult(11873));
-+mock.Setup(m => m.CountGoldPiecesAsync()).Returns(async () => 11873);
++mock.Setup(m => m.CountGoldPiecesAsync()).Returns(    async () => 11873 );
 ```
 
 ```diff
 -mock.Setup(m => m.GoPiratingAsync()).Throws(Task.FromException(new PirateException("arr!")));
-+mock.Setup(m => m.GoPiratingAsync()).Throws(async () => throw new PirateException("arr!"));
++mock.Setup(m => m.GoPiratingAsync()).Throws( async () => throw new PirateException("arr!") );
 ```
 
 Though the compiler will warn that the lambdas aren't `await`-ing
@@ -42,19 +42,19 @@ annoying.
 
 # Alternative API design in Moq 4.16
 
-In Moq version 4.16 (which is actually not published at this time of
+In version 4.16 (which is actually not published at this time of
 writing), Moq has gained an alternate API to do the same thing in yet
 another way&mdash;it allows you do set up the `.Result` of tasks
 directly:
 
 ```diff
--mock.Setup(m => m.CountGoldPiecesAsync().Result).Returns(Task.FromResult(11873));
-+mock.Setup(m => m.CountGoldPiecesAsync().Result).Returns(11873);
+-mock.Setup(m => m.CountGoldPiecesAsync()       ).Returns(Task.FromResult(11873));
++mock.Setup(m => m.CountGoldPiecesAsync().Result).Returns(                11873 );
 ```
 
 ```diff
--mock.Setup(m => m.GoPiratingAsync().Result).Throws(Task.FromException(new PirateException("arr!")));
-+mock.Setup(m => m.GoPiratingAsync().Result).Throws(new PirateException("arr!"));
+-mock.Setup(m => m.GoPiratingAsync()       ).Throws(Task.FromException(new PirateException("arr!")));
++mock.Setup(m => m.GoPiratingAsync().Result).Throws(                   new PirateException("arr!") );
 ```
 
 This was added in [moq/moq4#1126](https://github.com/moq/moq4/pull/1126)
