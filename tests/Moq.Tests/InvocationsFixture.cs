@@ -182,18 +182,6 @@ namespace Moq.Tests
 		}
 
 		[Fact]
-		public void MockInvocationsCanBeCleared()
-		{
-			var mock = new Mock<IComparable>();
-
-			mock.Object.CompareTo(new object());
-
-			mock.Invocations.Clear();
-
-			Assert.Equal(0, mock.Invocations.Count);
-		}
-
-		[Fact]
 		public void MockInvocationsCanBeRetrievedByIndex()
 		{
 			var mock = new Mock<IComparable>();
@@ -235,45 +223,6 @@ namespace Moq.Tests
 			_ = mock.Object.GetHashCode();
 			var invocation = mock.MutableInvocations.ToArray()[0];
 			Assert.Equal(42, invocation.ReturnValue);
-		}
-
-		[Fact]
-		public void Invocations_Clear_also_resets_setup_verification_state_of_regular_setups()
-		{
-			var mock = new Mock<IComparable>();
-			mock.Setup(m => m.CompareTo(default));
-			_ = mock.Object.CompareTo(default);
-			mock.VerifyAll();  // ensure setup has been matched
-
-			mock.Invocations.Clear();
-			var ex = Assert.Throws<MockException>(() => mock.VerifyAll());
-			Assert.Equal(MockExceptionReasons.UnmatchedSetup, ex.Reasons);
-		}
-
-		[Fact]
-		public void Invocations_Clear_also_resets_setup_verification_state_of_sequence_setups()
-		{
-			var mock = new Mock<IComparable>();
-			mock.SetupSequence(m => m.CompareTo(default));
-			_ = mock.Object.CompareTo(default);
-			mock.VerifyAll();  // ensure setup has been matched
-
-			mock.Invocations.Clear();
-			var ex = Assert.Throws<MockException>(() => mock.VerifyAll());
-			Assert.Equal(MockExceptionReasons.UnmatchedSetup, ex.Reasons);
-		}
-
-		[Fact]
-		public void Invocations_Clear_also_resets_setup_verification_state_of_inner_mock_setups()
-		{
-			var mock = new Mock<IX>();
-			mock.Setup(m => m.Nested.Do());
-			mock.Object.Nested.Do();
-			mock.VerifyAll();  // ensure setup has been matched
-
-			mock.Invocations.Clear();
-			var ex = Assert.Throws<MockException>(() => mock.VerifyAll());
-			Assert.Equal(MockExceptionReasons.UnmatchedSetup, ex.Reasons);
 		}
 
 		[Fact]

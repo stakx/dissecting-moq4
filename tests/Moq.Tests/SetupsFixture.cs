@@ -52,16 +52,6 @@ namespace Moq.Tests
 		}
 
 		[Fact]
-		public void Mock_Reset_results_in_empty_Setups()
-		{
-			var mock = new Mock<object>();
-			mock.Setup(m => m.ToString());
-			Assert.NotEmpty(mock.Setups);
-			mock.Reset();
-			Assert.Empty(mock.Setups);
-		}
-
-		[Fact]
 		public void Setups_includes_conditional_setups()
 		{
 			var mock = new Mock<object>();

@@ -96,14 +96,6 @@ namespace Moq
 			}
 		}
 
-		public void Clear()
-		{
-			lock (this.setups)
-			{
-				this.setups.Clear();
-			}
-		}
-
 		public Setup FindMatchFor(Invocation invocation)
 		{
 			// Fast path (no `lock`) when there are no setups:
@@ -133,17 +125,6 @@ namespace Moq
 		public IEnumerable<Setup> GetInnerMockSetups()
 		{
 			return this.ToArray(setup => !setup.IsOverridden && !setup.IsConditional && setup.InnerMock != null);
-		}
-
-		public void Reset()
-		{
-			lock (this.setups)
-			{
-				foreach (var setup in this.setups)
-				{
-					setup.Reset();
-				}
-			}
 		}
 
 		public IReadOnlyList<Setup> ToArray()

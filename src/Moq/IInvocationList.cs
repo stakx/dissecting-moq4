@@ -10,9 +10,5 @@ namespace Moq
 	/// </summary>
 	public interface IInvocationList : IReadOnlyList<IInvocation>
 	{
-		/// <summary>
-		/// Resets all invocations recorded for this mock.
-		/// </summary>
-		void Clear();
 	}
 }

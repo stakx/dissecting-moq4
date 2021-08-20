@@ -31,11 +31,6 @@ namespace Moq
 			return true;
 		}
 
-		protected override void ResetCore()
-		{
-			this.InnerMock.MutableSetups.Reset();
-		}
-
 		protected override bool TryVerifySelf(out MockException error)
 		{
 			error = null;

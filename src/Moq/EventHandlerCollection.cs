@@ -24,14 +24,6 @@ namespace Moq
 			}
 		}
 
-		public void Clear()
-		{
-			lock (this.eventHandlers)
-			{
-				this.eventHandlers.Clear();
-			}
-		}
-
 		public void Remove(EventInfo @event, Delegate eventHandler)
 		{
 			lock (this.eventHandlers)

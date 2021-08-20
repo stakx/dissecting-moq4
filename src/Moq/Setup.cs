@@ -163,17 +163,6 @@ namespace Moq
 			return error == null;
 		}
 
-		public void Reset()
-		{
-			this.flags &= ~Flags.Matched;
-
-			this.ResetCore();
-		}
-
-		protected virtual void ResetCore()
-		{
-		}
-
 		public void Verify(bool recursive = true)
 		{
 			this.Verify(recursive, setup => !setup.IsOverridden && !setup.IsConditional && setup.IsVerifiable);

@@ -68,20 +68,6 @@ namespace Moq
 			}
 		}
 
-		public void Clear()
-		{
-			lock (this.invocationsLock)
-			{
-				// Replace the collection so readers with a reference to the old collection aren't interrupted
-				this.invocations = null;
-				this.count = 0;
-				this.capacity = 0;
-
-				this.owner.MutableSetups.Reset();
-				// ^ TODO: Currently this could cause a deadlock as another lock will be taken inside this one!
-			}
-		}
-
 		public Invocation[] ToArray()
 		{
 			lock (this.invocationsLock)
